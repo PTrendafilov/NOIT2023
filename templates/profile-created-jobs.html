@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+        .job{
+            position: relative;
+        }
+        .buttons-container{
+            position: absolute;
+            bottom: 10px;
+            left:37%;
+        }
+        .button{
+            font-size: 20px;
+            min-width:100px;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+        .button a{
+            color: #35363a;
+        }
+    </style>
+    <main class="jobs-reading">
+        {% for job in user_jobs %}
+            <a href='/projects/project-detials/{{job.id}}'>
+                <div class="job">
+                    
+                    <div class="text-container">
+                        <h3 class="project-name">{{job.name}}</h3>
+                        <div class="information-line">
+                            <p class="project-details">{{job.skills}}</p>
+                            <p class="project-pay">Budget: {{job.payment}}</p>
+                            <p class="project-bids"><span class='button'>{{job.bids}}</span> bids</p>
+                        </div>
+
+                        <p class="project-description">{{job.description}}</p> 
+                        <div class='buttons-container'>
+                            <button class='button'><a href='/projects/project-edit/{{job.id}}'>Edit</a></button>
+                            <button class='button'><a href='/projects/project-delete/{{job.id}}'>Delete</a></button>
+                            <button class='button'><a href='/projects/project-bids/{{job.id}}'>View Bids</a></button>
+                        </div>
+                        <p class="project-date">{{job.time_from_creating}} ago</p> 
+                    </div>    
+                </div>
+            </a>
+        {% endfor %}
+    </main>
+{% endblock %}

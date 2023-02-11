@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="form-container">
+		<section class="container">
+			<img src="/static/images/login.png">
+			<form action="login" class="form" method='post'>
+				{% csrf_token %}
+				<div class="input-box">
+					<label>Email Address</label>
+					<input type="text" placeholder="Enter email address" name='email' required />
+				</div>
+		
+				<div class="input-box">
+					<label>Password</label>
+					<input type="password" placeholder="Enter password" name='password' required />
+				</div>       
+		
+				<input type="submit" value="Log in to the account" id="submit-form-btn">
+			</form>
+		</section>
+	</div>
+{% endblock %}

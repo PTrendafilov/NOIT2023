@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main class="jobs-reading">
+        {% for job in jobs %}
+            <a href='project-detials/{{job.id}}'>
+                <div class="job">
+                    <div class="text-container">
+                        <h3 class="project-name">{{job.name}}</h3>
+                        <div class="information-line">
+                            <p class="project-details">{{job.skills}}</p>
+                            <p class="project-pay">Budget: {{job.payment}}</p>
+                            <p class="project-bids"><span class='button'>{{job.bids}}</span> bids</p>
+                        </div>
+
+                        <p class="project-description">{{job.description}}</p> 
+                        <p class="project-date">{{job.time_from_creating}} ago</p> 
+                    </div>    
+                </div>
+            </a>
+        {% endfor %}
+    </main>
+{% endblock %}

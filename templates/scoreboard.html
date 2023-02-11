@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+        <main>
+            <section class="leaderboard">
+                <table class="table-fill">
+                    <thead>
+                        <tr>
+                            <th class="Id__title">ID</th>
+                            <th class="fname__title">First Name</th>
+                            <th class="lname__title">Last Name</th>
+                            <!--<th class="profile__title">Profile Link</th>-->
+                            <th class="points__title">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard">
+                        {% for user in users %}
+                            {% if user.role == 'freelancer'%}
+                                <tr>
+                                    <td class="iota__Id">{{user.id}}</th>
+                                    <td class="iota__fname">{{user.first_name}}</td>
+                                    <td class="iota__lname">{{user.last_name}}</td>
+                                    <!--<td class="iota__profile">Profile</td>-->
+                                    <td class="iota__points">{{user.points}}</td>
+                                </tr>
+                            {%endif%}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </main>            
+{% endblock %}

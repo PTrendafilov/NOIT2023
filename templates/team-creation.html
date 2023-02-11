@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="form-container">
+	    <section class="container">
+				<h2>Create a new Team</h2>
+			<form action="#" class="form">
+			  <div class="input-box">
+				<label>Team's name</label>
+				<input type="text" placeholder="Team's Name" required />
+			  </div>
+			  <div class="input-box">
+				<label>Description</label>
+				<textarea id="description" name="description" rows="4" cols="1" class="textarea" placeholder="A short description"></textarea>
+			  </div>
+			  <div class="input-box">
+				<label>Team Members</label>
+				<input type='number' placeholder="Max 5" style='width:20%;' min="1" max="5" required />
+			  </div>
+			  <input type="submit" value="Create Team" id="submit-form-btn">
+		</div>
+{% endblock %}

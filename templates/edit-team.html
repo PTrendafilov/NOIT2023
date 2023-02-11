@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="form-container">
+	    <section class="container">
+			<h2>Team's Name</h2>
+			<form action="#" class="form">
+			  <div class="input-box">
+				<label>Team's name</label>
+				<input type="text" placeholder="Team's Name" required />
+			  </div>
+			  <div class="input-box">
+				<label>Description</label>
+				<textarea id="description" name="description" rows="4" cols="1" class="textarea" placeholder="A short description"></textarea>
+			  </div>
+			  <div class="input-box">
+				<label>Add/Edit member:</label>
+				<div class="dropdown">
+					<a for="color">Member's color:</a>
+					<select name="color" id="colors">
+						<option value="Purple" selected>🟣</option>
+						<option value="Cyan">🔵</option>
+						<option value="Green">🟢</option>
+						<option value="Orange">🟠</option>
+						<option value="Red">🔴</option>
+					</select>
+				</div>
+				<a for="color">Member's Email:</a>
+				<input type="text" placeholder="Add via email" required />
+			  </div>
+
+			  <input type="submit" value="Confirm changes" id="submit-form-btn">
+			</form>
+		</section>
+	</div>
+{% endblock %}
