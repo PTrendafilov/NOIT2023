@@ -1,0 +1,125 @@
+.form-container .container {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  background: #35363a;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+.form-container .login-container{
+  text-align: center;
+}
+.form-container .container .form {
+  margin-top: 30px;
+}
+.form-container .form .input-box {
+  width: 100%;
+  margin-top: 20px;
+}
+.form-container .input-box label {
+  color: #46e0ba;
+}
+.form-container .form :where(.input-box input, .select-box) {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  color: #000000;
+  margin-top: 8px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 6px;
+  padding: 0 15px;
+}
+.form-container .input-box input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form-container .form button:hover {
+  background: #35363a;
+}
+@media screen and (max-width: 500px) {
+  .form-container .form .column {
+    flex-wrap: wrap;
+  }
+  .form-container .form :where(.gender-option, .gender) {
+    row-gap: 15px;
+  }
+}
+.form-container .container{
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-container .input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container .textarea{
+  font-size: 1rem;
+  color: black;
+  padding: 4px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  flex-grow: 1;
+  flex-basis: 100%;
+  resize: none;
+}
+.form-container .container h2{
+  text-align: center;
+  color: #46e0ba;
+}
+.form-container .container img{
+  display: block;
+  margin: auto;
+  width: 100px;
+}
+.form-container{
+  margin-top: -75px;
+}
+.dropdown {
+  display: inline-block;
+  position: relative;
+  background-color: #35363a;
+}
+.dropdown{
+  background-color: #35363a;
+}
+.role-container .image-continer i{
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+}
+.role-container .image-continer{
+  text-align: center;
+}
+.role-container{
+  position: relative;
+  display: inline-block;
+  margin: 0 0;
+  text-align: center;
+  width: 30%;
+  margin-right: 20px;
+  border: 2px solid #35363a;
+  padding: 15px;
+  border-radius: 5px;
+}
+.role-container input[type="radio"]{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  accent-color: #46e0ba;
+}
+.role-container:hover{
+  border: 2px solid #46e0ba;
+  transition: all 0.4s ease;
+}
+#role-form{
+  margin-left: 12px;
+}
+.clicked{
+  border: 2px solid #46e0ba;
+}

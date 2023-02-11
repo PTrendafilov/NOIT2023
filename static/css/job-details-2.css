@@ -1,0 +1,89 @@
+.form-container .container {
+    max-width: 1000px;
+}
+
+#description p {
+    margin-left: 20px;
+    margin-block-start: 0em;
+}
+
+#description span {
+    font-size: 20px;
+    color: #46e0ba;
+}
+
+.right-part {
+    float: right;
+}
+
+.left-part {
+    display: inline-block;
+}
+
+h2 {
+    margin-bottom: 25px;
+}
+
+.basic-info {
+    margin-bottom: 25px;
+}
+
+.input-box label {
+    font-size: 20px;
+}
+
+textarea {
+    width: 40%;
+}
+
+.input-box {
+    position: relative;
+    left: 30%;
+}
+
+#application h2 {
+    font-weight: normal;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.form-container .container .form {
+    margin-top: 0px;
+}
+
+#submit-form-btn {
+    width: 20%;
+}
+
+.options {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+
+#delete-btn {
+    font-size: 24px;
+    background-color: #46e0ba;
+    color: #35363a;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-radius: 50%;
+}
+#edit-btn{
+    font-size: 24px;
+    background-color: #46e0ba;
+    color: #35363a;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-radius: 50%;
+}
+#responsibility-list{
+    display: inline-block;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+#responsibility-list li::before {
+    content: "•";
+    padding-right: 10px;
+    color: #46e0ba;
+  }

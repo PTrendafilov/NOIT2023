@@ -1,0 +1,7 @@
+.job{
+    position: relative;
+}
+.buttons-container{
+    position: absolute;
+    bottom: 0;
+}

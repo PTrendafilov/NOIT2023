@@ -1,0 +1,137 @@
+.job-details-container {
+    background-color: var(--primary-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.job-details-container .box {
+    background-color: #35363a;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 1px rgb(0, 0, 0, 12%);
+    padding: 45px;
+    margin: 15px 0;
+    width: 950px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+    "images info"
+    "images description";
+    grid-gap: 35px;
+}
+
+.job-details-container .box .basic-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color:rgb(255, 255, 255); 
+    padding-top: 0px;
+}
+
+.job-details-container .box .basic-info .rate {
+    color: var(--yellow-color);
+    font-size: 35px;
+}
+
+.job-details-container .box .basic-info span {
+    font-weight: 800;
+    font-size: 25px;
+}
+
+.job-details-container .box .basic-info .options a:hover {
+    background-color: var(--tertiary-color);
+}
+
+.job-details-container .box .description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+.job-details-container .box .description p {
+    color: var(--gray-color);
+    line-height: 1.5;
+}
+
+.job-details-container .box .description .features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--gray-color);
+}
+
+.job-details-container .box .description .features i {
+    margin-right: 5px;
+}
+
+.job-details-container .box .description .features .fa-circle-check {
+    color: var(--tertiary-color);
+}
+
+.job-details-container .box .description .features .fa-circle-xmark {
+    color: var(--yellow-color);
+}
+.job-details-container .box .description .p{
+    font-size: 18px;
+}
+.job-details-container .box .description{
+    margin-top: 16px;
+}
+
+@media (max-width: 991px) {
+    .job-details-container .box {
+        width: 750px;
+        grid-template-areas: 
+        "info info"
+        "images description";
+    }
+    .job-details-container .box .basic-info .options a {
+        padding: 8.5px 12px;
+    }
+}
+
+@media screen and (max-width: 991px) and (min-width: 769px) {
+    .job-details-container .box .basic-info span {
+        position: absolute;
+        align-self: flex-end;
+    }
+    .job-details-container .box .basic-info .options {
+        position: absolute;
+        align-self: flex-end;
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .job-details-container .box {
+        width: 600px;
+        grid-template-areas: 
+        "images info"
+        "description description";
+    }
+    .job-details-container .box .images {
+        gap: 3px;
+    }
+    .job-details-container .box .images .img-holder img {
+        border-radius: 5px;
+    }
+}
+
+@media (max-width: 640px) {
+    .job-details-container .box {
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        padding: 35px;
+        margin: 0;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+        grid-template-areas: 
+        "images"
+        "info"
+        "description";
+    }
+}

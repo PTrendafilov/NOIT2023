@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+:root{
+	--bg-color: #35363a;
+	--text-color: #fff;
+	--main-color: #46e0ba;
+    --primary-color: #222222;
+    --secondary-color: #00b4d5;
+    --tertiary-color: #0077b6;
+    --yellow-color: #ffb900;
+    --gray-color: #ffffff;
+}
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	text-decoration: none;
+	list-style: none;
+}
+
+body{
+	background: var(--bg-color);
+	color: var(--text-color);
+}
+h1,p{
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+#submit-form-btn{
+	text-align: center;
+	border: none;
+	background-color: #46e0ba;
+	color: #35363a;
+	display: block;
+	width: 40%;
+	margin: auto;
+	font-size: 20px;
+	margin-top: 25px;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: 0px 0px 20px rgba(0, 85, 83, 0.4)
+}
+/* Front page and profile details page buttons */
+.button{
+    background-color: #46e0ba;
+	color: #35363a;
+    margin-top: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 5px;
+    font-size: 24px;
+	border: #3c4245;
+	cursor: pointer;
+	box-shadow: 0px 0px 20px rgba(0, 85, 83, 0.4)
+}

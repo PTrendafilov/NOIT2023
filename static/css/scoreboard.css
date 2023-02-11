@@ -1,0 +1,33 @@
+.leaderboard .table-fill {
+  max-width: 800px;
+  padding:5px;
+  width: 100%;
+  margin: auto;
+  border-collapse: collapse;
+  position: relative;
+}
+.leaderboard th {
+  color:#46e0ba;;
+  background: rgb(95, 103, 105);
+  font-size:28px;
+  font-weight: 100;
+  height: 70px;
+  vertical-align:middle;
+  text-align: center;
+  border-right: 1px solid #35363a;
+}
+.leaderboard tr {
+  border-bottom: 1px solid #35363a;
+  color: rgb(255, 255, 255);
+  font-weight:normal;
+
+}
+.leaderboard td {
+  background:#5f6769;
+  padding:20px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight:300;
+  font-size:25px;
+  border-right: 1px solid #35363a;
+}

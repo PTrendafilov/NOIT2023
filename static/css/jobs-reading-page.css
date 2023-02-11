@@ -1,0 +1,64 @@
+.jobs-reading .job{
+	position: relative;
+	padding: 15px;
+    margin-left: 10%;
+	margin-right: 10%;
+    border-bottom: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #46e0ba;
+
+}
+
+.jobs-reading .job:hover{
+    background-color: #5f6769;
+	border-radius: 10px;
+}
+
+.jobs-reading .information-line{
+    font-size: 12px;
+}
+
+.jobs-reading .information-line p{
+    display: inline-block;
+}
+
+
+.jobs-reading  p{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* number of lines to show */
+	-webkit-box-orient: vertical;
+}
+
+.jobs-reading .text-container{
+	padding: 15px;
+}
+.jobs-reading  .project-bids{
+	position: absolute;
+	top: 15px;
+	right: 25px;
+	font-size: 16px;
+}
+.jobs-reading  .project-bids span{
+	border-radius: 50%;
+	cursor: none;
+	box-shadow:none;
+	font-size: 16px;
+	margin-top: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.jobs-reading  .project-date{
+	position: absolute;
+	bottom: 0;
+	right: 25px;
+}
+.jobs-reading  .project-details{
+	color: #46e0ba;
+	position: absolute;
+	bottom: 0;
+}
+.jobs-reading .project-bids,.jobs-reading  .project-name,.jobs-reading .project-pay,.jobs-reading .project-description,.jobs-reading .project-date{
+	color: white;
+}

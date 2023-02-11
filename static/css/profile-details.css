@@ -1,0 +1,180 @@
+.profile-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 100px;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 1.15fr 2fr;
+    box-shadow: 0 35px 55px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container aside {
+    position: relative;
+    background-color: #3c4245;
+    padding: 40px;
+}
+
+.profile-container .img-box {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-container .img-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-container main {
+    position: relative;
+    background-color: #3c4245;
+    padding: 40px;
+}
+
+.profile-container .contacts {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.profile-container .contacts .title {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.profile-container .contacts ul {
+    position: relative;
+}
+
+.profile-container .contacts ul li {
+    position: relative;
+    list-style: none;
+    margin: 10px 0;
+}
+
+.profile-container .contacts ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.profile-container .contacts ul li span {
+    color: white;
+    font-weight: 300;
+}
+
+.profile-container .contacts ul li .icon {
+    display: inline-block;
+    width: 30px;
+    font-size: 18px;
+    color: #46e0ba;
+}
+
+.profile-container .about .box .education,
+.profile-container .about .box .projects {
+    min-width: 200px;
+    margin-right: 20px;
+}
+
+.profile-container .about {
+    margin-bottom: 50px;
+}
+
+.profile-container .about:last-child {
+    margin-bottom: 0px;
+}
+
+.profile-container li {
+    color: #fff;
+}
+
+.profile-container p {
+    color: #fff;
+}
+
+.profile-container a {
+    color: #fff;
+    font-size: 14pt;
+}
+
+.profile-container .title-about {
+    color: #46e0ba;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.profile-container .about .box {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0;
+}
+
+.profile-container .about .box .education h5,
+.profile-container .about .box .projects h5 {
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.profile-container .about .box .description h4 {
+    text-transform: uppercase;
+    color: #46e0ba;
+    font-size: 16px;
+}
+
+.profile-container .lang .box {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container .lang .box h4 {
+    text-transform: uppercase;
+    color: #849c99;
+    font-weight: 500;
+}
+
+.profile-container .lang .box .precent {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    background: #d7d7d7;
+}
+
+.profile-container .lang .box .precent div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #46e0ba;
+}
+
+.profile-container #courses a {
+    text-decoration: none;
+}
+
+.profile-container .button{
+    margin-top: 10px;
+    width: 60%;
+}
+.profile-container .button-text{
+    color: #35363a;
+}
+.profile-container{
+  margin-left: auto;
+  margin-right: auto;
+}
