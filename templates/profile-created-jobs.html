@@ -19,29 +19,80 @@
             color: #35363a;
         }
     </style>
+    <style>
+        h2{
+            color: #46e0ba;
+            text-align: center;
+            margin-top:50px;
+        }
+    </style>
     <main class="jobs-reading">
-        {% for job in user_jobs %}
-            <a href='/projects/project-detials/{{job.id}}'>
-                <div class="job">
-                    
-                    <div class="text-container">
-                        <h3 class="project-name">{{job.name}}</h3>
-                        <div class="information-line">
-                            <p class="project-details">{{job.skills}}</p>
-                            <p class="project-pay">Budget: {{job.payment}}</p>
-                            <p class="project-bids"><span class='button'>{{job.bids}}</span> bids</p>
-                        </div>
+        {% if undone_jobs %}
+            <h2>Undone Jobs</h2>
+            {% for job in undone_jobs %}
+                <a href='/projects/project-detials/{{job.id}}'>
+                    <div class="job">
+                        
+                        <div class="text-container">
+                            <h3 class="project-name">{{job.name}}</h3>
+                            <div class="information-line">
+                                <p class="project-details">{{job.skills}}</p>
+                                <p class="project-pay">Budget: {{job.payment}}</p>
+                                <p class="project-bids"><span class='button'>{{job.bids}}</span> bids</p>
+                            </div>
 
-                        <p class="project-description">{{job.description}}</p> 
-                        <div class='buttons-container'>
-                            <button class='button'><a href='/projects/project-edit/{{job.id}}'>Edit</a></button>
-                            <button class='button'><a href='/projects/project-delete/{{job.id}}'>Delete</a></button>
-                            <button class='button'><a href='/projects/project-bids/{{job.id}}'>View Bids</a></button>
-                        </div>
-                        <p class="project-date">{{job.time_from_creating}} ago</p> 
-                    </div>    
-                </div>
-            </a>
-        {% endfor %}
+                            <p class="project-description">{{job.description}}</p> 
+                            <div class='buttons-container'>
+                                <button class='button'><a href='/projects/project-edit/{{job.id}}'>Edit</a></button>
+                                <button class='button'><a href='/projects/project-delete/{{job.id}}'>Delete</a></button>
+                                <button class='button'><a href='/projects/project-bids/{{job.id}}'>View Bids</a></button>
+                            </div>
+                            <p class="project-date">{{job.time_from_creating}} ago</p> 
+                        </div>    
+                    </div>
+                </a>
+            {% endfor %}
+        {%endif%}
+        {% if done_jobs %}
+            <h2>Finished and unpaid projects</h2>
+            {% for job in done_jobs %}
+                <a href='/projects/project-detials/{{job.id}}'>
+                    <div class="job">
+                        <div class="text-container">
+                            <h3 class="project-name">{{job.name}}</h3>
+                            <div class="information-line">
+                                <p class="project-details">{{job.skills}}</p>
+                                <p class="project-pay">Budget: {{job.payment}}</p>
+                                <p class="project-bids"><span class='button'>{{job.bids}}</span> bids</p>
+                            </div>
+                            <p class="project-description">{{job.description}}</p> 
+                            <p class="project-date">{{job.time_from_creating}} ago</p> 
+                        </div>    
+                    </div>
+                </a>
+                {% endfor %}
+            {%endif%}
+        {% if paid_jobs %}
+            <h2>Finished and paid projects</h2>
+            {% for job in paid_jobs %}
+                <a href='/projects/project-detials/{{job.id}}'>
+                    <div class="job">
+                        <div class="text-container">
+                            <h3 class="project-name">{{job.name}}</h3>
+                            <div class="information-line">
+                                <p class="project-details">{{job.skills}}</p>
+                                <p class="project-pay">Budget: {{job.payment}}</p>
+                                <p class="project-bids"><span class='button'>{{job.bids}}</span> bids</p>
+                            </div>
+                            <p class="project-description">{{job.description}}</p> 
+                            <p class="project-date">{{job.time_from_creating}} ago</p> 
+                        </div>    
+                    </div>
+                </a>
+                {% endfor %}
+            {%endif%}
+        {% if not done_jobs and not  undone_jobs and not paid_jobs%}
+            <h2>You haven't created any jobs. Go <a href='/projects/create_job_page' class='button'>CREATE</a></h2>
+        {%endif%}
     </main>
 {% endblock %}

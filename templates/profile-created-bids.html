@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    h2{
+        color: #46e0ba;
+        text-align: center;
+    }
+</style>
+    <link rel="stylesheet" type="text/css" href="/static/css/applications-reading-page.css">
+    <main class="applications-reading">
+        {% if waiting_bids%}
+            <h2>Your waiting bids</h2>
+        {%endif%}
+        {% for application in waiting_bids %}
+            <a href='/projects/project-detials/{{application.project.id}}'>
+                <div class="bid-details">
+                    <div class="text-container">
+                        <h3 class="application-name">{{application.candidate.first_name}} {{application.candidate.last_name}}</h3>
+                        <div class="information-line">
+                            <p class="application-bids"><span class='button'>{{application.bid}}</span></p>
+                            <!--
+                            <p class="application-pay">Budget: {{job.payment}}</p>
+                            <p class="application-bids"><span class='button'>{{job.bids}}</span> bids</p>-->
+                        </div>
+
+                        <p class="application-description">{{application.cover_letter}}</p> 
+                        <div class='buttons-container'>
+                            <button class='button'><a href='/projects/delete_bid/{{application.id}}'>Delete the bid</a></button>
+                            <button class='button'><a href='/projects/project-detials/{{application.project.id}}'>View project</a></button>
+                        </div>
+                        <p class="application-date">{{application.time_from_creating}} ago</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}   
+        {% if accepted_bids%}
+            <h2>Your accepted bids</h2>
+        {% endif %}
+        {% for application in accepted_bids %}
+            <a href='/projects/project-detials/{{application.project.id}}'>
+                <div class="bid-details">
+                    <div class="text-container">
+                        <h3 class="application-name">{{application.candidate.first_name}} {{application.candidate.last_name}}</h3>
+                        <div class="information-line">
+                            <p class="application-bids"><span class='button'>{{application.bid}}</span></p>
+                            <!--
+                            <p class="application-pay">Budget: {{job.payment}}</p>
+                            <p class="application-bids"><span class='button'>{{job.bids}}</span> bids</p>-->
+                        </div>
+
+                        <p class="application-description">{{application.cover_letter}}</p> 
+                        <div class='buttons-container'>
+                            <button class='button'><a href='/projects/delete_bid/{{application.id}}'>Delete the bid</a></button>
+                            <button class='button'><a href='/projects/project-detials/{{application.project.id}}'>View project</a></button>
+                        </div>
+                        <p class="application-date">{{application.time_from_creating}} ago</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}    
+        {% if rejected_bids%}
+            <h2>Your rejected bids</h2>
+        {% endif %}
+        {% for application in rejected_bids %}
+        <a href='/projects/project-detials/{{application.project.id}}'>
+            <div class="bid-details">
+                <div class="text-container">
+                    <h3 class="application-name">{{application.candidate.first_name}} {{application.candidate.last_name}}</h3>
+                    <div class="information-line">
+                        <p class="application-bids"><span class='button'>{{application.bid}}</span></p>
+                    </div>
+
+                    <p class="application-description">{{application.cover_letter}}</p> 
+                    <div class='buttons-container'>
+                        <button class='button'><a href='/projects/delete_bid/{{application.id}}'>Delete the bid</a></button>
+                        <button class='button'><a href='/projects/project-detials/{{application.project.id}}'>View project</a></button>
+                    </div>
+                    <p class="application-date">{{application.time_from_creating}} ago</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% if done_bids%}
+            <h2>Your bids for already finished projects</h2>
+        {% endif %}
+        {% for application in done_bids %}
+        <a href='/projects/project-detials/{{application.project.id}}'>
+            <div class="bid-details">
+                <div class="text-container">
+                    <h3 class="application-name">{{application.candidate.first_name}} {{application.candidate.last_name}}</h3>
+                    <div class="information-line">
+                        <p class="application-bids"><span class='button'>{{application.bid}}</span></p>
+                    </div>
+
+                    <p class="application-description">{{application.cover_letter}}</p> 
+                    <div class='buttons-container' style='left:40%'>
+                        <button class='button'><a href='/projects/verify_payment/{{application.project.id}}'>The client has paid me</a></button>
+                    </div>
+                    <p class="application-date">{{application.time_from_creating}} ago</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% if paid_bids%}
+            <h2>Your bids for already finished and paid projects</h2>
+        {% endif %}
+        {% for application in paid_bids %}
+        <a href='/projects/project-detials/{{application.project.id}}'>
+            <div class="bid-details">
+                <div class="text-container">
+                    <h3 class="application-name">{{application.candidate.first_name}} {{application.candidate.last_name}}</h3>
+                    <div class="information-line">
+                        <p class="application-bids"><span class='button'>{{application.bid}}</span></p>
+                    </div>
+
+                    <p class="application-description">{{application.cover_letter}}</p> 
+                    <p class="application-date">{{application.time_from_creating}} ago</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    {%if not waiting_bids and not accepted_bids and not rejected_bids and not done_bids and not paid_bids%}
+        <h2>You haven't made any bids. Go to <a href='/projects/' class='button'>JOBS</a></h2>
+    {%endif%}
+    </main> 
+
+{% endblock %}

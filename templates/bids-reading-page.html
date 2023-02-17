@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    h2{
+        color: #46e0ba;
+        text-align: center;
+    }
+</style>
+    <link rel="stylesheet" type="text/css" href="/static/css/applications-reading-page.css">
+    {%if applications or flag_accepted_bid%}
+        <h2>Applications for {{project.name}}</h2>
+    {%endif%}    
+    {% if not flag_accepted_bid and not applications %}
+            <h2>There is no bids for your project right now. <br>Please wait for freelancer to make a bid...</h2>
+    {%endif%}
+    {% if flag_accepted_bid%}
+        <h2>Accepted bid</h2>
+        <a href='/profile/{{accepted_bid.candidate.id}}'>
+            <div class="bid-details">
+                <div class="text-container">
+                    <h3 class="application-name">{{accepted_bid.candidate.first_name}} {{accepted_bid.candidate.last_name}}</h3>
+                    <div class="information-line">
+                        <p class="application-bids"><span class='button'>{{accepted_bid.bid}}</span></p>
+                        <!--
+                        <p class="application-pay">Budget: {{job.payment}}</p>
+                        <p class="application-bids"><span class='button'>{{job.bids}}</span> bids</p>-->
+                    </div>
+
+                    <p class="application-description">{{accepted_bid.cover_letter}}</p> 
+                    <div class='buttons-container' style='left:32.5%;'>
+                        <button class='button'><a href='/projects/project_is_done/{{project.id}}'>The project is ready</a></button>
+                        <button class='button'><a href='/projects/remove_accepted_bid/{{accepted_bid.id}}'>Find another freelancer</a></button>
+                    </div>
+                    <p class="application-date">{{accepted_bid.time_from_creating}} ago</p>
+                </div>
+            </div>
+        </a>
+    {% endif %}
+    {% if flag_accepted_bid and applications %}
+        <h2 id='other-bids'>Other bids</h2>
+    {% endif %}
+    <main class="applications-reading">
+        {% for application in applications %}
+            <a href='/profile/{{application.candidate.id}}'>
+                <div class="bid-details">
+                    <div class="text-container">
+                        <h3 class="application-name">{{application.candidate.first_name}} {{application.candidate.last_name}}</h3>
+                        <div class="information-line">
+                            <p class="application-bids"><span class='button'>{{application.bid}}</span></p>
+                            <!--
+                            <p class="application-pay">Budget: {{job.payment}}</p>
+                            <p class="application-bids"><span class='button'>{{job.bids}}</span> bids</p>-->
+                        </div>
+
+                        <p class="application-description">{{application.cover_letter}}</p> 
+                        {% if flag_accepted_bid == False %}
+                        <div class='buttons-container'>
+                            <button class='button'><a href='/projects/accept/{{application.id}}'>Accept the bid</a></button>
+                            <button class='button'><a href='/projects/reject/{{application.id}}'>Reject the bid</a></button>
+                        </div>
+                        {%else%}
+                        <div class='buttons-container' style='left:43.5%'>
+                            <button class='button'><a href='/projects/reject/{{application.id}}'>Reject the bid</a></button>
+                        </div>
+                        {%endif%}
+                        <p class="application-date">{{application.time_from_creating}} ago</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+       
+    </main> 
+
+{% endblock %}

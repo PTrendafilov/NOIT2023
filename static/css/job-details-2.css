@@ -10,6 +10,7 @@
 #description span {
     font-size: 20px;
     color: #46e0ba;
+    display: block;
 }
 
 .right-part {

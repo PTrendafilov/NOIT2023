@@ -1,4 +1,4 @@
-.jobs-reading .job{
+.bid-details{
 	position: relative;
 	padding: 15px;
     margin-left: 10%;
@@ -9,21 +9,21 @@
 
 }
 
-.jobs-reading .job:hover{
+.bid-details:hover{
     background-color: #5f6769;
 	border-radius: 10px;
 }
 
-.jobs-reading .information-line{
+.information-line{
     font-size: 12px;
 }
 
-.jobs-reading .information-line p{
+.information-line p{
     display: inline-block;
 }
 
 
-.jobs-reading  p{
+ p{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
@@ -31,34 +31,58 @@
 	-webkit-box-orient: vertical;
 }
 
-.jobs-reading .text-container{
+.text-container{
 	padding: 15px;
 }
-.jobs-reading  .project-bids{
+ .application-bids{
 	position: absolute;
 	top: 15px;
 	right: 25px;
 	font-size: 16px;
 }
-.jobs-reading  .project-bids span{
+ .application-bids span{
 	border-radius: 50%;
-	/*cursor: none;*/
+	/*cursor: ;*/
 	box-shadow:none;
 	font-size: 16px;
 	margin-top: 0px;
     padding-right: 5px;
     padding-left: 5px;
 }
-.jobs-reading  .project-date{
+ .application-date{
 	position: absolute;
 	bottom: 0;
 	right: 25px;
 }
-.jobs-reading  .project-details{
+.application-details{
 	color: #46e0ba;
 	position: absolute;
 	bottom: 0;
 }
-.jobs-reading .project-bids,.jobs-reading  .project-name,.jobs-reading .project-pay,.jobs-reading .project-description,.jobs-reading .project-date{
+.application-bids, .application-name,.application-pay,.application-description,.application-date{
 	color: white;
+}
+.applications{
+    position: relative;
+}
+.buttons-container{
+    position: absolute;
+    bottom: 10px;
+    left:37%;
+}
+.button{
+    font-size: 20px;
+    min-width:100px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.button a{
+    color: #35363a;
+}
+h2{
+    color: #46e0ba;
+    text-align: center;
+}
+#other-bids{
+	margin-top:100px;
 }
