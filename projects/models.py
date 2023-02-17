@@ -3,9 +3,12 @@ from datetime import datetime
 from accounts.models import Profile as User
 # Create your models here.
 class Application(models.Model):
-    bid = models.FloatField()
+    bid = models.CharField(max_length=100, default=0)
     cover_letter = models.TextField(default=None)
     candidate = models.ForeignKey(User, on_delete=models.CASCADE, related_name='candidate')
+    date_created = models.DateTimeField(auto_now_add=True)
+    is_accepted = models.BooleanField(default=False)
+    is_rejected = models.BooleanField(default=False)
 class Project(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -17,5 +20,6 @@ class Project(models.Model):
     creator =  models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects_created')
     date_created = models.DateTimeField(auto_now_add=True)
     applications = models.ManyToManyField(Application, related_name='apllications')
+    is_it_paid = models.BooleanField(default=False)
     def __str__(self):
         return f'{self.name}'
