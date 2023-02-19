@@ -18,4 +18,5 @@ urlpatterns = [
     path('delete_bid/<int:id>', views.delete_bid, name='delete_bid'),
     path('verify_payment/<int:id>', views.verify_payment, name='verify_payment'),
     path('bids_made_by_user/', views.bids_made_by_user, name='bids_made_by_user'),
+    path('edit-project/<int:id>', views.edit_project, name='edit_project'),
 ]

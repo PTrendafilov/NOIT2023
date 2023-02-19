@@ -8,6 +8,6 @@ def index(request):
         if users[i].role == 'freelancer':
             counter+=1
             users[i].place = counter
-            print(users[i].username)
+            #print(users[i].username)
         #print(user.username, user.points)
     return render(request, 'scoreboard.html', {'users':users})
