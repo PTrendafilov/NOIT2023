@@ -10,7 +10,7 @@ addResponsibility.addEventListener('click', function (ev) {
         const responsibitiesContainer = addResponsibility.parentElement;
         const newResponsibility = document.createElement("div");
         newResponsibility.classList.add("responsibility");
-        newResponsibility.innerHTML =`<span class="responsibility-text"> ${newResponsibilityInput.value} </span> <button class="delete"> <i class="far fa-trash-alt"></i> </button>`;
+        newResponsibility.innerHTML =`<span class="responsibility-text">${newResponsibilityInput.value}</span><button class="delete"> <i class="far fa-trash-alt"></i> </button>`;
         const currentIndex = arrResponsibilities.length;
         arrResponsibilities.push(newResponsibilityInput.value);
         newResponsibility.querySelector(".delete").addEventListener("click", function () {
@@ -23,3 +23,4 @@ addResponsibility.addEventListener('click', function (ev) {
         newResponsibilityInput.value = "";
     }
 });
+

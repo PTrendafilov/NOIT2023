@@ -1,95 +1,95 @@
-<!DOCTYPE html>
-{% load static %}
+<!DOCTYPE html> {% load static %}
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Poject Hunters</title>
-	<link rel="stylesheet" type="text/css" href="{%static 'css/style.css' %}">
-	<link rel="stylesheet" type="text/css" href="{%static 'css/navbar.css' %}">
-	<link rel="stylesheet" type="text/css" href="/static/css/footer.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/forms.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/front-page.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/jobs-reading-page.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/profile-details.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/scoreboard.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/team-viz.css">
-	<link rel="stylesheet" type="text/css" href="/static/css/create-job.css">
-	<link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-  	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Poject Hunters</title>
+    <link rel="stylesheet" type="text/css" href="{%static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="/static/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/forms.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/front-page.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/jobs-reading-page.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/profile-details.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/scoreboard.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/team-viz.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/create-job.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
 </head>
+
 <body>
-	<nav>
-		<a href="/">
-			<img src ="/static/images/logo.png" class="logo">
-		</a>
-		
-		<ul class="navbar">
-			<li><a href="/" class="active" id='home-link'>Home</a></li>
-			<li><a href="/projects/" id='projects-link'>Jobs</a></li>
-			{% if request.user.is_authenticated and  request.user.role == 'client' %}
-				<li><a href="/projects/create_job_page" id = "projects-create-link">Create Jobs</a></li>
-			{% endif %}
-			{% if request.user.is_authenticated and  request.user.role == 'teamleader' %}
-				<li><a href="/teams/create_team" id = "team-create-link">Create a Team</a></li>
-			{% endif %}
-			{% if request.user.is_authenticated and  request.user.role == 'freelancer' %}
-				<li><a href="/scoreboard" id="scoreboard-link">Scoreboard</a></li>
-			{% endif %}
-			<!--
+    <nav>
+        <a href="/">
+            <img src="/static/images/logo.png" class="logo">
+        </a>
+
+        <ul class="navbar">
+            <li><a href="/" class="active" id='home-link'>Начало</a></li>
+            <li><a href="/projects/" id='projects-link'>Проекти</a></li>
+            {% if request.user.is_authenticated and request.user.role == 'client' %}
+            <li><a href="/projects/create_job_page" id="projects-create-link">Създай проект</a></li>
+            {% endif %} {% if request.user.is_authenticated and request.user.role == 'teamleader' %}
+            <li><a href="/teams/create_team" id="team-create-link">Създай екип</a></li>
+            {% endif %} {% if request.user.is_authenticated and request.user.role == 'freelancer' %}
+            <li><a href="/scoreboard" id="scoreboard-link">Класиране</a></li>
+            {% endif %}
+            <!--
 				{% if request.user.is_authenticated and request.user.role == 'freelancer' or request.user.role == 'teamleader'%}
 					<li><a href="/teams" id="teams-link">Teams</a></li>
 				{% endif %}
 			-->
-		</ul>
-		
-		<div class="main">
-			{% if request.user.is_authenticated %}
-				{% if request.user.is_authenticated and  request.user.role == 'freelancer' %}
-					<li><a href="/profile" id="profile-link" >Profile Details</a></li>
-				{%endif%}
-				<li><a href="/accounts/logout">Logout</a></li>
-				{% if request.user.is_authenticated and  request.user.role == 'client' %}
-					<li><a href="/projects/jobs_created_by_user/" id="my-job-link">My jobs</a></li>
-				{% endif %}
-				{% if request.user.is_authenticated and  request.user.role == 'freelancer' %}
-					<li><a href="/projects/bids_made_by_user/" id="my-job-link">My bids</a></li>
-				{% endif %}
-				{% else %}
-					<a href="/accounts" class="user" id="login-link"><i class="ri-user-fill"></i>Sign In</a>
-					<a href="/accounts/choose_role" id="register-link">Register</a>
-					<div class="bx bx-menu" id="menu-icon"></div>
-				{% endif %}
-		</div>
+        </ul>
 
-	</nav>
-	{% block content %}
-    {% endblock %}
-	<footer>
-		<div class="footer-container">
-		  <div class="left-col">
-			<img src="/static/images/logo.png" alt="" class="logo">
-			<div class="social-media">
-			  <a href="#"><i class="fab fa-discord"></i></a>
-			  <a href="#"><i class="fab fa-instagram"></i></a>
-			  <a href="#"><i class="fab fa-youtube"></i></a>
-			</div>
-			<p class="rights-text">© 2022-2023 Created By <b>Project Hunters</b>  All Rights Reserved.</p>
-		  </div>
-  
-		  <div class="right-col">
-			<h1>Our Newsletter</h1>
-			<div class="border"></div>
-			<p>Enter Your Email to get our news and updates.</p>
-			<form action="" class="newsletter-form">
-			  <input type="text" class="txtb" placeholder="Enter Your Email">
-			  <input type="submit" class="btn" value="Submit">
-			</form>
-		  </div>
-		</div>
-	  </footer>
-	<script type="text/javascript" src="/static/js/base.js"></script>
+        <div class="main">
+            {% if request.user.is_authenticated %} {% if request.user.is_authenticated and request.user.role == 'freelancer' %}
+            <li><a href="/profile" id="profile-link">Профил</a></li>
+            {%endif%}
+            <li><a href="/accounts/logout">Излез</a></li>
+            {% if request.user.is_authenticated and request.user.role == 'client' %}
+            <li><a href="/projects/jobs_created_by_user/" id="my-job-link">Моите проекти</a></li>
+            {% endif %} {% if request.user.is_authenticated and request.user.role == 'freelancer' %}
+            <li>
+                <a href="/projects/bids_made_by_user/" id="my-job-link">Моите оферти</a>
+            </li>
+            {% endif %} {% else %}
+            <a href="/accounts" class="user" id="login-link"><i class="ri-user-fill"></i>Вход</a>
+            <a href="/accounts/choose_role" id="register-link">Регистрация</a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+            {% endif %}
+        </div>
+
+    </nav>
+    {% block content %} {% endblock %}
+    <!--
+    <footer>
+        <div class="footer-container">
+            <div class="left-col">
+                <img src="/static/images/logo.png" alt="" class="logo">
+                <div class="social-media">
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="rights-text">© 2022-2023 Created By <b>Project Hunters</b> All Rights Reserved.</p>
+            </div>
+
+            <div class="right-col">
+                <h1>Our Newsletter</h1>
+                <div class="border"></div>
+                <p>Enter Your Email to get our news and updates.</p>
+                <form action="" class="newsletter-form">
+                    <input type="text" class="txtb" placeholder="Enter Your Email">
+                    <input type="submit" class="btn" value="Submit">
+                </form>
+            </div>
+        </div>
+    </footer>-->
+    <script type="text/javascript" src="/static/js/base.js"></script>
 </body>
+
 </html>

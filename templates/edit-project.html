@@ -3,69 +3,109 @@
 
 	<div class="form-container">
 		<section class="container">
-			<h2>Edit the project</h2>
-			<form action="/projects/create_project/" class="form" method='post'>
+			<h2>Редактирай работата</h2>
+			<form action="/projects/edit-project/{{project.id}}" class="form" method='post'>
 				{% csrf_token %}
 				<div class="input-box">
-					<label>Project name</label>
-					<input type="text" placeholder="New project" name='title' value='{{project.name}}'/>
+					<label>Име на проекта</label>
+					<input type="text" placeholder="Заглавие на проекта" name='title' value='{{project.name}}'/>
 				</div>
 				<div class="input-box">
-					<label>Description</label>
-					<textarea id="description" name="description" rows="4" cols="1" class="textarea" placeholder="A short description">{{project.description}}</textarea>
+					<label>Описание</label>
+					<textarea id="description" name="description" rows="4" cols="1" class="textarea" placeholder="Кратко описание">{{project.description}}</textarea>
 				</div>
 				<div class="input-box">
-					<label>Responsibilities</label>
-					<textarea rows="4" cols="1" class="textarea" placeholder="Responsibilities" id='responsibility-textarea'></textarea>
+					<label>Отговорности</label>
+					<textarea rows="4" cols="1" class="textarea" placeholder="Отговорности" id='responsibility-textarea'></textarea>
 					<input name='responsibilities' value='' style='display:none;' id='responsibility-values' class="textbox" type="text">
-					<button class="add" id='add-responsibility'>Add</button>
+					<button class="add" id='add-responsibility'>Добави</button>
+                    {% for responsibility in project.responsibilities %}
+                        <div class='responsibility'>
+                            <span class="responsibility-text">{{responsibility}}</span>
+                            <button class="delete" onclick="this.parentElement.remove()"><i class="far fa-trash-alt"></i></button>
+                        </div>
+                    {% endfor %}
 				</div>
 				<div class="input-box">
 					<div class="skills">
-						<label>Skills</label>
+						<label>Нужни умения</label>
 						<div class="new-skill" id='skills-autocomplete-box'>
-							<input id='skill-textbox' class="textbox" type="text" placeholder="Add Skills">
+							<input id='skill-textbox' class="textbox" type="text" placeholder="Добави умения">
 							<input name='skills' value='' style='display:none;' id='skill-values' class="textbox" type="text">
 						</div>
 						
-						<button class="add" id='add-skill'>Add</button>
+						<button class="add" id='add-skill'>Добави</button>
+                        {% for skill in project.skills %}
+                            <div class='skill'>
+                                <span class="skill-text">{{skill}}</span>
+                                <button class="delete" onclick="this.parentElement.remove()"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                        {% endfor %}
 					</div>
 				</div>
 				<div class="input-box">
-					<label style='font-size:20px;'>Budget</label>
+					<label style='font-size:20px;'>Цена</label>
 					<input type="radio" class='radio-btn' value='payment-for-hour' name="payment-type" id='payment-type-hour'>
-					<label class="text" for="payment-type-hour">Payment for hour</label>
+					<label class="text" for="payment-type-hour">Плащане на час</label>
 					<div id="textBoxDivFirst" style="display:none;">
 						<div class="currency">
 							<input class="const payment-cost" name='payment-hour' type="number" placeholder='10' min='0' id='payment-type-hour-input'>
-							<select class="select" id="select1" name='currency'>
-							<option value="EUR">EUR</option>
-							<option value="USD">USD</option>
-							<option value="GBP">GBP</option>
-							<option value="BGN">BGN</option>
+							<select class="select" id="select1" name='currency-hour'>
+							<option value="EUR" id='eur-hour'>EUR</option>
+							<option value="USD" id='usd-hour'>USD</option>
+							<option value="BGN" id='bgn-hour'>BGN</option>
 							</select>
 						</div>
 					</div>
 					<input type="radio" class='radio-btn' value='payment-for-project' name="payment-type" id='payment-type-project'>
-					<label class="text" for="payment-type-project">Payment for project</label>
+					<label class="text" for="payment-type-project">Плащане за завършен проект</label>
 					<div id="textBoxDivSecond" style="display:none;">
 						<div class="currency">
 							<input class="const payment-cost" name='payment-project' type="number" min='0' placeholder='150' id='payment-type-project-input' >
-							<select class="select" id="select2" name='currency'>
-							<option value="EUR">EUR</option>
-							<option value="USD">USD</option>
-							<option value="GBP">GBP</option>
-							<option value="BGN">BGN</option>
+							<select class="select" id="select2" name='currency-project'>
+							<option value="EUR" id='eur-project'>EUR</option>
+							<option value="USD" id='usd-project'>USD</option>
+							<option value="BGN" id='bgn-project'>BGN</option>
 						</select>
 						</div>
 					</div>
 				</div>
 			
-					<input type="submit" value="Create job" id="submit-form-btn">
+					<input type="submit" value="Edit job" id="submit-form-btn">
 				
 	</div>
 	</div>
-	
+	<script>
+        if ({{project.payment_per_hour_flag}}) {
+            document.querySelector('#payment-type-hour').click();
+            document.querySelector('#textBoxDivFirst').style.display = 'block';
+            document.querySelector('#textBoxDivSecond').style.display = 'none';
+            document.querySelector('#payment-type-hour-input').value = '{{project.payment_value}}';
+            if('{{project.currency}}'=='€'){
+                document.querySelector('#eur-hour').setAttribute("selected", "selected");
+            }else if('{{project.currency}}'=='$'){
+                document.querySelector('#usd-hour').setAttribute("selected", "selected");
+            }else{
+                document.querySelector('#bgn-hour').setAttribute("selected", "selected");
+            }
+            document.querySelector('#payment-type-hour-input').focus();
+            
+        }else{
+            document.querySelector('#payment-type-project').click();
+            document.querySelector('#textBoxDivFirst').style.display = 'none';
+            document.querySelector('#textBoxDivSecond').style.display = 'block';
+            document.querySelector('#payment-type-project-input').value = '{{project.payment_value}}';
+            if('{{project.currency}}'=='€'){
+                document.querySelector('#eur-project').setAttribute("selected", "selected");
+            }else if('{{project.currency}}'=='$'){
+                document.querySelector('#usd-project').setAttribute("selected", "selected");
+            }else{
+                document.querySelector('#bgn-project').setAttribute("selected", "selected");
+            }
+            document.querySelector('#payment-type-project-input').focus();
+        }
+    </script>
+	<script src='/static/js/edit-project.js'></script>
 	<script src='/static/js/responsibility.js'></script>
 	<script src='/static/js/radio_button.js'></script>
 	<script src='/static/js/skills-autocomplete.js'></script>

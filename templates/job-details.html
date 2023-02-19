@@ -1,66 +1,72 @@
-{% extends 'base.html' %}
-{% block content %}
-    <link rel="stylesheet" type="text/css" href="/static/css/job-details-2.css">
-	<div class="form-container">
-		<section class="container">
-            <h2>{{project.name}}</h2>
-            <div class="basic-info">
-                <div class="left-part">
-                    <span class='info-spans' id='skills-info'>Skills: <span style='color: #46e0ba;'>{{project.skills}}</span></span><br>
-                    <span class='info-spans' id='budget-info'>Budget: <span style='color: #46e0ba;'>{{project.payment}}</span></span>
-                </div>
-                <div class="right-part">
-                    <span class='info-spans' id='posted-info'>Posted: <span style='color: #46e0ba;'>{{project.time_from_creating}}</span> ago</span><br>
-                    <span class='info-spans' id='bids-info'>Bids: <span style='color: #46e0ba;'>{{project.bids}}</span></span>
-                </div>
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" type="text/css" href="/static/css/job-details-2.css">
+<div class="form-container">
+    <section class="container">
+        <h2>{{project.name}}</h2>
+        <div class="basic-info">
+            <div class="left-part">
+                <span class='info-spans' id='skills-info'>Умения: 
+                {%for skill in project.skills%}
+                    <span style='color: #46e0ba;'>{{skill}}</span>
+                {%endfor%}</span><br>
+                <span class='info-spans' id='budget-info'>Бюджет: <span style='color: #46e0ba;'>{{project.payment}}</span></span>
             </div>
-            <div id='description'>
-                    <span>Description: </span>
-                    <p>{{project.description}}</p>
-                    <span>Responsibilities: </span>
-                    <ul id='responsibility-list'>
-                        {%for responsibility in project.responsibilities%}
-                            <li>{{responsibility}}</li>
-                        {%endfor%}
-                    </ul>
+            <div class="right-part">
+                <span class='info-spans' id='posted-info'>Публикувано: <span style='color: #46e0ba;'>преди {{project.time_from_creating}}</span><br>
+                <span class='info-spans' id='bids-info'>Оферти: <span style='color: #46e0ba;'>{{project.bids}}</span></span>
             </div>
-            <hr>
-            {% if is_freelancer and not already_made_offer%}
-            <div id="application">
-                <h2>Application</h2>
-                <form action="/projects/aplly/{{project.id}}" class="form" method='post'>
-                    {%csrf_token%}
-                    <div class="input-box">
-                        <label>Bid</label>
-                        <div id="textBoxDivFirst">
-                            <div class="currency">
-                                <input class="const payment-cost" name='bid' type="number" placeholder='10' min='0'>
-                                <select class="select" id="select1" name='currency'>
+        </div>
+        <div id='description'>
+            <span>Описание: </span>
+            <p>{{project.description}}</p>
+            <span>Отговорности: </span>
+            <ul id='responsibility-list'>
+                {%for responsibility in project.responsibilities%}
+                <li>{{responsibility}}</li>
+                {%endfor%}
+            </ul>
+        </div>
+        <hr> {% if is_freelancer and not already_made_offer%}
+        <div id="application">
+            <h2>Оферта</h2>
+            <form action="/projects/aplly/{{project.id}}" class="form" method='post'>
+                {%csrf_token%}
+                <div class="input-box">
+                    <label>Желана сума</label>
+                    <div id="textBoxDivFirst">
+                        <div class="currency">
+                            <input class="const payment-cost" name='bid' type="number" placeholder='10' min='0'>
+                            <select class="select" id="select1" name='currency'>
                                 <option value="EUR">EUR</option>
                                 <option value="USD">USD</option>
                                 <option value="GBP">GBP</option>
                                 <option value="BGN">BGN</option>
                                 </select>
-                            </div>
                         </div>
                     </div>
-                    <div class="input-box">
-                        <label>Cover letter</label>
-                        <textarea id="cover-letter" name="cover-letter" rows="4" cols="1" class="textarea" placeholder="Cover letter"></textarea>
-                    </div>
-                    <input type="submit" value="Apply" id="submit-form-btn">    
-                </form>
-            </div>
-            {%else%}
-                <h2>You have already made a bid!</h2>
-            {%endif%}
-                <div class="options">
-                    {% if flag %}
-                        <a href="/projects/project-edit/{{project.id}}" id='edit-btn'><i class="fa-regular fa-pen-to-square"></i></a>
-                        <a href="/projects/project-delete/{{project.id}}" id='delete-btn'><i class="far fa-trash-alt"></i></a>
-                    {% endif %}   
                 </div>
-            </section>
-    </div>
+                <div class="input-box">
+                    <label>Мотивационно писмо</label>
+                    <textarea id="cover-letter" name="cover-letter" rows="4" cols="1" class="textarea" placeholder="Мотивационно писмо"></textarea>
+                </div>
+                <input type="submit" value="Изпрати" id="submit-form-btn">
+            </form>
+        </div>
+        {%elif is_freelancer and already_made_offer%}
+        <h2>Вие вече сте направили оферта!</h2>
+        {%endif%}
+        <div class="options">
+            {% if flag %}
+            <a href="/projects/project-edit/{{project.id}}" id='edit-btn'><i class="fa-regular fa-pen-to-square"></i></a>
+            <a href="/projects/project-delete/{{project.id}}" id='delete-btn'><i class="far fa-trash-alt"></i></a> {% endif %}
+        </div>
+    </section>
+</div>
 
 {% endblock %}
+<!--{%for skill in project.skills%}
+                            <span style='color: #46e0ba;'>{{skill}}</span>
+                        {%endfor%}
+                        {%for responsibility in project.responsibilities%}
+                            <li>{{responsibility}}</li>
+                        {%endfor%}-->

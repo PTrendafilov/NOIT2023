@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/applications-reading-page.css">
     <main class="applications-reading">
         {% if waiting_bids%}
-            <h2>Your waiting bids</h2>
+            <h2>Вашите направени оферти под изчакване</h2>
         {%endif%}
         {% for application in waiting_bids %}
             <a href='/projects/project-detials/{{application.project.id}}'>
@@ -25,16 +25,16 @@
 
                         <p class="application-description">{{application.cover_letter}}</p> 
                         <div class='buttons-container'>
-                            <button class='button'><a href='/projects/delete_bid/{{application.id}}'>Delete the bid</a></button>
-                            <button class='button'><a href='/projects/project-detials/{{application.project.id}}'>View project</a></button>
+                            <button class='button'><a href='/projects/delete_bid/{{application.id}}'>Изтриване на оферта</a></button>
+                            <button class='button'><a href='/projects/project-detials/{{application.project.id}}'>Проект</a></button>
                         </div>
-                        <p class="application-date">{{application.time_from_creating}} ago</p>
+                        <p class="application-date">преди {{application.time_from_creating}}</p>
                     </div>
                 </div>
             </a>
         {% endfor %}   
         {% if accepted_bids%}
-            <h2>Your accepted bids</h2>
+            <h2>Вашите приети оферти</h2>
         {% endif %}
         {% for application in accepted_bids %}
             <a href='/projects/project-detials/{{application.project.id}}'>
@@ -50,16 +50,16 @@
 
                         <p class="application-description">{{application.cover_letter}}</p> 
                         <div class='buttons-container'>
-                            <button class='button'><a href='/projects/delete_bid/{{application.id}}'>Delete the bid</a></button>
-                            <button class='button'><a href='/projects/project-detials/{{application.project.id}}'>View project</a></button>
+                            <button class='button'><a href='/projects/delete_bid/{{application.id}}'>Изтриване на оферта</a></button>
+                            <button class='button'><a href='/projects/project-detials/{{application.project.id}}'>Проект</a></button>
                         </div>
-                        <p class="application-date">{{application.time_from_creating}} ago</p>
+                        <p class="application-date">преди {{application.time_from_creating}}</p>
                     </div>
                 </div>
             </a>
         {% endfor %}    
         {% if rejected_bids%}
-            <h2>Your rejected bids</h2>
+            <h2>Вашите отказани оферти</h2>
         {% endif %}
         {% for application in rejected_bids %}
         <a href='/projects/project-detials/{{application.project.id}}'>
@@ -72,16 +72,16 @@
 
                     <p class="application-description">{{application.cover_letter}}</p> 
                     <div class='buttons-container'>
-                        <button class='button'><a href='/projects/delete_bid/{{application.id}}'>Delete the bid</a></button>
-                        <button class='button'><a href='/projects/project-detials/{{application.project.id}}'>View project</a></button>
+                        <button class='button'><a href='/projects/delete_bid/{{application.id}}'>Изтриване на оферта</a></button>
+                        <button class='button'><a href='/projects/project-detials/{{application.project.id}}'>Проект</a></button>
                     </div>
-                    <p class="application-date">{{application.time_from_creating}} ago</p>
+                    <p class="application-date">преди {{application.time_from_creating}}</p>
                 </div>
             </div>
         </a>
         {% endfor %}
         {% if done_bids%}
-            <h2>Your bids for already finished projects</h2>
+            <h2>Вашите завършени проекти</h2>
         {% endif %}
         {% for application in done_bids %}
         <a href='/projects/project-detials/{{application.project.id}}'>
@@ -94,15 +94,15 @@
 
                     <p class="application-description">{{application.cover_letter}}</p> 
                     <div class='buttons-container' style='left:40%'>
-                        <button class='button'><a href='/projects/verify_payment/{{application.project.id}}'>The client has paid me</a></button>
+                        <button class='button'><a href='/projects/verify_payment/{{application.project.id}}'>Бизнесът ми е платил</a></button>
                     </div>
-                    <p class="application-date">{{application.time_from_creating}} ago</p>
+                    <p class="application-date">преди {{application.time_from_creating}}</p>
                 </div>
             </div>
         </a>
         {% endfor %}
         {% if paid_bids%}
-            <h2>Your bids for already finished and paid projects</h2>
+            <h2>Вашите завършени и платени проекти</h2>
         {% endif %}
         {% for application in paid_bids %}
         <a href='/projects/project-detials/{{application.project.id}}'>
@@ -114,13 +114,13 @@
                     </div>
 
                     <p class="application-description">{{application.cover_letter}}</p> 
-                    <p class="application-date">{{application.time_from_creating}} ago</p>
+                    <p class="application-date">{{application.time_from_creating}} преди</p>
                 </div>
             </div>
         </a>
         {% endfor %}
     {%if not waiting_bids and not accepted_bids and not rejected_bids and not done_bids and not paid_bids%}
-        <h2>You haven't made any bids. Go to <a href='/projects/' class='button'>JOBS</a></h2>
+        <h2>Не сте кандидатсвали за проекти.Отидете на <a href='/projects/' class='button'>Проекти</a></h2>
     {%endif%}
     </main> 
 

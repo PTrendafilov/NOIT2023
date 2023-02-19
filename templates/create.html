@@ -3,65 +3,63 @@
 
 	<div class="form-container">
 		<section class="container">
-			<h2>Create a new Job</h2>
+			<h2>Публикувай нова работа</h2>
 			<form action="/projects/create_project/" class="form" method='post'>
 				{% csrf_token %}
 				<div class="input-box">
-					<label>Project name</label>
-					<input type="text" placeholder="New project" name='title'/>
+					<label>Име на проекта</label>
+					<input type="text" placeholder="Заглавие на проекта" name='title'/>
 				</div>
 				<div class="input-box">
-					<label>Description</label>
-					<textarea id="description" name="description" rows="4" cols="1" class="textarea" placeholder="A short description"></textarea>
+					<label>Описание</label>
+					<textarea id="description" name="description" rows="4" cols="1" class="textarea" placeholder="Кратко описание"></textarea>
 				</div>
 				<div class="input-box">
-					<label>Responsibilities</label>
-					<textarea rows="4" cols="1" class="textarea" placeholder="Responsibilities" id='responsibility-textarea'></textarea>
+					<label>Отговорности</label>
+					<textarea rows="4" cols="1" class="textarea" placeholder="Отговорности" id='responsibility-textarea'></textarea>
 					<input name='responsibilities' value='' style='display:none;' id='responsibility-values' class="textbox" type="text">
-					<button class="add" id='add-responsibility'>Add</button>
+					<button class="add" id='add-responsibility'>Добави</button>
 				</div>
 				<div class="input-box">
 					<div class="skills">
-						<label>Skills</label>
+						<label>Нужни умения</label>
 						<div class="new-skill" id='skills-autocomplete-box'>
-							<input id='skill-textbox' class="textbox" type="text" placeholder="Add Skills">
+							<input id='skill-textbox' class="textbox" type="text" placeholder="Добави умения">
 							<input name='skills' value='' style='display:none;' id='skill-values' class="textbox" type="text">
 						</div>
 						
-						<button class="add" id='add-skill'>Add</button>
+						<button class="add" id='add-skill'>Добави</button>
 					</div>
 				</div>
 				<div class="input-box">
-					<label style='font-size:20px;'>Budget</label>
+					<label style='font-size:20px;'>Цена</label>
 					<input type="radio" class='radio-btn' value='payment-for-hour' name="payment-type" id='payment-type-hour'>
-					<label class="text" for="payment-type-hour">Payment for hour</label>
+					<label class="text" for="payment-type-hour">Плащане на час</label>
 					<div id="textBoxDivFirst" style="display:none;">
 						<div class="currency">
 							<input class="const payment-cost" name='payment-hour' type="number" placeholder='10' min='0' id='payment-type-hour-input'>
-							<select class="select" id="select1" name='currency'>
-							<option value="EUR">EUR</option>
-							<option value="USD">USD</option>
-							<option value="GBP">GBP</option>
-							<option value="BGN">BGN</option>
+							<select class="select" id="select1" name='currency-hour'>
+							<option value="EUR-hour" id='eur-hour'>EUR</option>
+							<option value="USD-hour" id='usd-hour'>USD</option>
+							<option value="BGN-hour" id='bgn-hour'>BGN</option>
 							</select>
 						</div>
 					</div>
 					<input type="radio" class='radio-btn' value='payment-for-project' name="payment-type" id='payment-type-project'>
-					<label class="text" for="payment-type-project">Payment for project</label>
+					<label class="text" for="payment-type-project">Плащане за завършен проект</label>
 					<div id="textBoxDivSecond" style="display:none;">
 						<div class="currency">
 							<input class="const payment-cost" name='payment-project' type="number" min='0' placeholder='150' id='payment-type-project-input' >
-							<select class="select" id="select2" name='currency'>
-							<option value="EUR">EUR</option>
-							<option value="USD">USD</option>
-							<option value="GBP">GBP</option>
-							<option value="BGN">BGN</option>
+							<select class="select" id="select2" name='currency-project'>
+							<option value="eur-project">EUR</option>
+							<option value="USD-project">USD</option>
+							<option value="BGN-project">BGN</option>
 						</select>
 						</div>
 					</div>
 				</div>
 			
-					<input type="submit" value="Create job" id="submit-form-btn">
+					<input type="submit" value="Публикувай работа" id="submit-form-btn">
 				
 	</div>
 	</div>

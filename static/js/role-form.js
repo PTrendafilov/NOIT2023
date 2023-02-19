@@ -4,21 +4,21 @@ const teamleaderInput = document.getElementById(id='input-teamleader');
 const submitFormBtn = document.getElementById('submit-form-btn');
 const inputs = document.getElementsByClassName('role-input');
 freelancerInput.addEventListener("click", function(){
-    submitFormBtn.value = 'Join as a Freelancer';
+    submitFormBtn.value = 'Включи се като ученик';
     for(let i=0; i < inputs.length; i++){
         inputs[i].parentElement.classList.remove('clicked');
     }
     freelancerInput.parentElement.classList.add('clicked');
 });
 clientInput.addEventListener("click", function(){
-    submitFormBtn.value = 'Join as a Client';
+    submitFormBtn.value = 'Включи се като бизнес';
     for(let i=0; i < inputs.length; i++){
         inputs[i].parentElement.classList.remove('clicked');
     }
     clientInput.parentElement.classList.add('clicked');
 });
 teamleaderInput.addEventListener("click", function(){
-    submitFormBtn.value = 'Join as a Team Leader';
+    submitFormBtn.value = 'Включи се като ментор';
     for(let i=0; i < inputs.length; i++){
         inputs[i].parentElement.classList.remove('clicked');
     }

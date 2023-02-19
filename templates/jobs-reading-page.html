@@ -7,13 +7,17 @@
                     <div class="text-container">
                         <h3 class="project-name">{{job.name}}</h3>
                         <div class="information-line">
-                            <p class="project-details">{{job.skills}}</p>
-                            <p class="project-pay">Budget: {{job.payment}}</p>
-                            <p class="project-bids"><span class='button'>{{job.bids}}</span> bids</p>
+                            <p class="project-details">
+                                {%for skill in job.skills%}
+                                    <span style='color: #46e0ba;'>{{skill}}</span>
+                                {%endfor%}
+                            </p>
+                            <p class="project-pay">Заплащане: {{job.payment}}</p>
+                            <p class="project-bids"><span class='button'>{{job.bids}}</span> оферти</p>
                         </div>
 
                         <p class="project-description">{{job.description}}</p> 
-                        <p class="project-date">{{job.time_from_creating}} ago</p> 
+                        <p class="project-date">преди {{job.time_from_creating}}</p> 
                     </div>    
                 </div>
             </a>

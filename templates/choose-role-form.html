@@ -2,7 +2,7 @@
 {% block content %}
 <div class="form-container">
     <section class="container">
-        <h2>Join as a client, freelancer or team leader</h2>
+        <h2>Регистрирайте се като бизнес, ученик/студент или отборен лидер</h2>
         <form action="registration_page" class="form" method='post'>
             {% csrf_token %}
             <div id="role-form">
@@ -10,30 +10,30 @@
                     <div class="role-container clicked">
                         <div class="image-continer"><i class="fa-solid fa-user-tie"></i></div>
                         <div class='text-container'>
-                            I’m a client, hiring for a project
+                             Аз имам бизнес и се нуждая от решение на проблем
                         </div>
-                        <input type="radio"  name='role' id='input-client' class="role-input" value='client' checked required />
+                        <input type="radio"  name='role' id='input-client' class="role-input" value='бизнес' checked required />
                     </div>
                 </label>
                 <label>
                     <div class="role-container">
                         <div class="image-continer"><i class="fa-solid fa-users"></i></div>
                         <div class='text-container'>
-                            I’m a freelancer, looking for work
+                            Аз съм ученик/студент и търся работа
                         </div>
-                        <input type="radio"  name='role' id='input-freelancer' value='freelancer' class="role-input" required />
+                        <input type="radio"  name='role' id='input-freelancer' value='ученик' class="role-input" required />
                     </div>
                 </label>
                 <label>
                     <div class="role-container" style="margin-right:0;">
                         <div class="image-continer"><i class="fa-solid fa-user-gear"></i></div>
                         <div class='text-container'>
-                            I’m a team leader, looking for work
+                            Аз съм отборен лидер и търся работа
                         </div>
-                        <input type="radio"  name='role' id='input-teamleader' value='teamleader' class="role-input" required />
+                        <input type="radio"  name='role' id='input-teamleader' value='ментор' class="role-input" required />
                     </div>
                 </label>
-                <input type="submit" value="Join as a Client" id="submit-form-btn">
+                <input type="submit" value="Включи се като бизнес" id="submit-form-btn">
             </div>
         </form>
     </section>
