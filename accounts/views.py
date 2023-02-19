@@ -32,6 +32,12 @@ def registrate_user(request):
     first_name = request.POST['first_name']
     password = request.POST['password']
     role = request.POST['role']
+    if role=='ментор':
+        role = 'teamleader'
+    if role=='ученик':
+        role = 'freelancer'
+    if role=='бизнес':
+        role = 'client'
     user =  User.objects.create_user(first_name = first_name, password = password, last_name = last_name, email=email, username=username, role=role)
     return redirect(login_page)
 def login(request):
