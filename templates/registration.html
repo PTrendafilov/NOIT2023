@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+    <style>
+        .invalid{
+            border:1px solid red!important;
+        }
+    </style>
     <div class="form-container">
         <section class="container">
             <h2>{{selected_role_capitalize}} Регистрация</h2>
@@ -31,5 +36,5 @@
             </form>
         </section>
     </div>
-    <!--<script src='/static/js/registration.js'></script>-->
+    <script src='/static/js/registration.js'></script>
 {% endblock %}

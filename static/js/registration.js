@@ -3,6 +3,20 @@ const lastNameElement = document.getElementById('last-name');
 const emailElement = document.getElementById('email');
 const passwordElement = document.getElementById('password');
 const submitElement = document.getElementById('submit-form-btn');
+
+firstNameElement.addEventListener('input', validate_first_name);
+
+function validate_first_name(event){
+    const firstNameValue = event.target.value;
+    const regex = /^[a-zA-Z]+$/;
+    const isValid = regex.test(firstNameValue);
+    if(isValid){
+      firstNameElement.classList.remove('invalid');
+    } else {
+      firstNameElement.classList.add('invalid');
+    }
+}
+/*
 submitElement.addEventListener('click', validate);
 function validate(ev) {
     ev.preventDefault();
@@ -68,3 +82,4 @@ function validate(ev) {
     validateEmail(email);
     validatePassword(password);
 }
+*/

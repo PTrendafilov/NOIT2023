@@ -51,8 +51,8 @@
 						<div class="currency">
 							<input class="const payment-cost" name='payment-hour' type="number" placeholder='10' min='0' id='payment-type-hour-input'>
 							<select class="select" id="select1" name='currency-hour'>
-							<option value="EUR" id='eur-hour'>EUR</option>
-							<option value="USD" id='usd-hour'>USD</option>
+							<option value="€" id='eur-hour'>EUR</option>
+							<option value="$" id='usd-hour'>USD</option>
 							<option value="BGN" id='bgn-hour'>BGN</option>
 							</select>
 						</div>
@@ -63,24 +63,24 @@
 						<div class="currency">
 							<input class="const payment-cost" name='payment-project' type="number" min='0' placeholder='150' id='payment-type-project-input' >
 							<select class="select" id="select2" name='currency-project'>
-							<option value="EUR" id='eur-project'>EUR</option>
-							<option value="USD" id='usd-project'>USD</option>
+							<option value="€" id='eur-project'>EUR</option>
+							<option value="$" id='usd-project'>USD</option>
 							<option value="BGN" id='bgn-project'>BGN</option>
 						</select>
 						</div>
 					</div>
 				</div>
 			
-					<input type="submit" value="Edit job" id="submit-form-btn">
+					<input type="submit" value="Редактирай работата" id="submit-form-btn">
 				
 	</div>
 	</div>
 	<script>
-        if ({{project.payment_per_hour_flag}}) {
+        if ('{{project.payment_type_hourly}}'=='True') {
             document.querySelector('#payment-type-hour').click();
             document.querySelector('#textBoxDivFirst').style.display = 'block';
             document.querySelector('#textBoxDivSecond').style.display = 'none';
-            document.querySelector('#payment-type-hour-input').value = '{{project.payment_value}}';
+            document.querySelector('#payment-type-hour-input').value = '{{project.payment}}';
             if('{{project.currency}}'=='€'){
                 document.querySelector('#eur-hour').setAttribute("selected", "selected");
             }else if('{{project.currency}}'=='$'){
@@ -94,7 +94,7 @@
             document.querySelector('#payment-type-project').click();
             document.querySelector('#textBoxDivFirst').style.display = 'none';
             document.querySelector('#textBoxDivSecond').style.display = 'block';
-            document.querySelector('#payment-type-project-input').value = '{{project.payment_value}}';
+            document.querySelector('#payment-type-project-input').value = '{{project.payment}}';
             if('{{project.currency}}'=='€'){
                 document.querySelector('#eur-project').setAttribute("selected", "selected");
             }else if('{{project.currency}}'=='$'){

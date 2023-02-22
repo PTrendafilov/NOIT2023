@@ -12,7 +12,9 @@
                                     <span style='color: #46e0ba;'>{{skill}}</span>
                                 {%endfor%}
                             </p>
-                            <p class="project-pay">Заплащане: {{job.payment}}</p>
+                            <p class="project-pay">
+                                Заплащане: {{job.payment}}{{job.currency}}{%if job.payment_type_hourly%}/h{%endif%}
+                            </p>
                             <p class="project-bids"><span class='button'>{{job.bids}}</span> оферти</p>
                         </div>
 

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+	<div class="form-container">
+		<section class="container">
+			<h2>Създайте си профил</h2>
+			<form action="/projects/create_project/" class="form" method='post'>
+				{% csrf_token %}
+				<div class="input-box">
+					<label>Специалност</label>
+					<input type="text" placeholder="Пример: Програмист на Python" name='title'/>
+				</div>
+				<div class="input-box">
+					<label>За вас</label>
+					<textarea id="description" name="about-us" rows="4" cols="1" class="textarea" placeholder="Дайте кратко описание за вашите способности. Пример: Имам богат опит в сферата на програмирането. Работя с езика Python и web-framework Django."></textarea>
+				</div>
+				<div class="input-box">
+					<div class="skills">
+						<label>Вашите умения</label>
+						<div class="new-skill" id='skills-autocomplete-box'>
+							<input id='skill-textbox' class="textbox" type="text" placeholder="Добави умения">
+							<input name='skills' value='' style='display:none;' id='skill-values' class="textbox" type="text">
+						</div>
+						<button class="add" id='add-skill'>Добави</button>
+					</div>
+				</div>
+                <div class="input-box">
+                    <div class="upload-CV">
+                        <label>Качете CV-то си</label>
+                        <br>
+                        <label for="upload-CV-input" class="custom-file-upload">
+                            <i class="fas fa-cloud-upload-alt"></i> Избери файл
+                        </label>
+                        <input type='file' id='upload-CV-input' style='display:none'>
+                    </div>
+                </div>
+					<input type="submit" value="Създайте профил" id="submit-form-btn">
+				
+	</div>
+	</div>
+	<script>
+		const fileInput = document.getElementById('upload-CV-input');
+		const customUpload = document.querySelector('.custom-file-upload');
+		
+		fileInput.addEventListener('change', function() {
+		  if (fileInput.files.length > 0) {
+			customUpload.textContent = fileInput.files[0].name;
+		  } else {
+			customUpload.textContent = 'Избери файл';
+		  }
+		});
+		</script>
+	<script src='/static/js/skills-autocomplete.js'></script>
+	<script src='/static/js/skills.js'></script>
+{% endblock %}

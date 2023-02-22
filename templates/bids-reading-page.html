@@ -17,10 +17,7 @@
         <div class="text-container">
             <h3 class="application-name">{{accepted_bid.candidate.first_name}} {{accepted_bid.candidate.last_name}}</h3>
             <div class="information-line">
-                <p class="application-bids"><span class='button'>{{accepted_bid.bid}}</span></p>
-                <!--
-                        <p class="application-pay">Budget: {{job.payment}}</p>
-                        <p class="application-bids"><span class='button'>{{job.bids}}</span> bids</p>-->
+                <p class="application-bids"><span class='button'>{{accepted_bid.bid}}{{accepted_bid.currency}}</span></p>
             </div>
 
             <p class="application-description">{{accepted_bid.cover_letter}}</p>
@@ -37,32 +34,32 @@
 {% endif %}
 <main class="applications-reading">
     {% for application in applications %}
-    <a href='/profile/{{application.candidate.id}}'>
-        <div class="bid-details">
-            <div class="text-container">
-                <h3 class="application-name">{{application.candidate.first_name}} {{application.candidate.last_name}}</h3>
-                <div class="information-line">
-                    <p class="application-bids"><span class='button'>{{application.bid}}</span></p>
-                    <!--
-                            <p class="application-pay">Budget: {{job.payment}}</p>
-                            <p class="application-bids"><span class='button'>{{job.bids}}</span> bids</p>-->
-                </div>
+        <a href='/profile/{{application.candidate.id}}'>
+            <div class="bid-details">
+                <div class="text-container">
+                    <h3 class="application-name">{{application.candidate.first_name}} {{application.candidate.last_name}}</h3>
+                    <div class="information-line">
+                        <p class="application-bids"><span class='button'>{{application.bid}}{{application.currency}}</span></p>
+                        <!--
+                                <p class="application-pay">Budget: {{job.payment}}</p>
+                                <p class="application-bids"><span class='button'>{{job.bids}}</span> bids</p>-->
+                    </div>
 
-                <p class="application-description">{{application.cover_letter}}</p>
-                {% if flag_accepted_bid == False %}
-                <div class='buttons-container' style='left:32%'>
-                    <button class='button'><a href='/projects/accept/{{application.id}}'>Приемане на оферта</a></button>
-                    <button class='button'><a href='/projects/reject/{{application.id}}'>Отхвърляне на оферта</a></button>
+                    <p class="application-description">{{application.cover_letter}}</p>
+                    {% if flag_accepted_bid == False %}
+                    <div class='buttons-container' style='left:32%'>
+                        <button class='button'><a href='/projects/accept/{{application.id}}'>Приемане на оферта</a></button>
+                        <button class='button'><a href='/projects/reject/{{application.id}}'>Отхвърляне на оферта</a></button>
+                    </div>
+                    {%else%}
+                    <div class='buttons-container' style='left:43.5%'>
+                        <button class='button'><a href='/projects/reject/{{application.id}}'>Отхвърлена оферта</a></button>
+                    </div>
+                    {%endif%}
+                    <p class="application-date">преди {{application.time_from_creating}}</p>
                 </div>
-                {%else%}
-                <div class='buttons-container' style='left:43.5%'>
-                    <button class='button'><a href='/projects/reject/{{application.id}}'>Отхвърлена оферта</a></button>
-                </div>
-                {%endif%}
-                <p class="application-date">преди {{application.time_from_creating}}</p>
             </div>
-        </div>
-    </a>
+        </a>
     {% endfor %}
 
 </main>

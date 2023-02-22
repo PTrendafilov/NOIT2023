@@ -72,8 +72,9 @@ const skillTextbox = document.querySelector('#skill-textbox');
 const optionsContainer = document.createElement('ul');
 optionsContainer.setAttribute('id', 'options-skills-autocomplete');
 optionsContainer.style.display = 'none';
-skillTextbox.parentElement.parentElement.appendChild(optionsContainer);
-
+const skillContainer = document.querySelector('.skills');
+const skillDiv = document.querySelector('.skill');
+skillContainer.insertBefore(optionsContainer, skillDiv);
 skillTextbox.addEventListener('input', function () {
   const val = this.value;
   const options = popularSkills.filter(function (skill) {

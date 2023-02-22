@@ -9,7 +9,7 @@
                 {%for skill in project.skills%}
                     <span style='color: #46e0ba;'>{{skill}}</span>
                 {%endfor%}</span><br>
-                <span class='info-spans' id='budget-info'>Бюджет: <span style='color: #46e0ba;'>{{project.payment}}</span></span>
+                <span class='info-spans' id='budget-info'>Бюджет: <span style='color: #46e0ba;'>{{project.payment}}{{project.currency}}{%if project.payment_type_hourly%}/h{%endif%}</span></span>
             </div>
             <div class="right-part">
                 <span class='info-spans' id='posted-info'>Публикувано: <span style='color: #46e0ba;'>преди {{project.time_from_creating}}</span><br>
@@ -37,9 +37,8 @@
                         <div class="currency">
                             <input class="const payment-cost" name='bid' type="number" placeholder='10' min='0'>
                             <select class="select" id="select1" name='currency'>
-                                <option value="EUR">EUR</option>
-                                <option value="USD">USD</option>
-                                <option value="GBP">GBP</option>
+                                <option value="€">EUR</option>
+                                <option value="$">USD</option>
                                 <option value="BGN">BGN</option>
                                 </select>
                         </div>
@@ -62,11 +61,4 @@
         </div>
     </section>
 </div>
-
 {% endblock %}
-<!--{%for skill in project.skills%}
-                            <span style='color: #46e0ba;'>{{skill}}</span>
-                        {%endfor%}
-                        {%for responsibility in project.responsibilities%}
-                            <li>{{responsibility}}</li>
-                        {%endfor%}-->
