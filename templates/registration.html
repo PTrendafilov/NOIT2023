@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
     <style>
-        .invalid{
-            border:1px solid red!important;
+        .invalid {
+            border: 3px solid red !important;
+        }
+        
+        .valid {
+            border: 3px solid green !important;
         }
     </style>
     <div class="form-container">
@@ -13,23 +17,33 @@
                 <div class="input-box">
                     <label>Име</label>
                     <input type="text" id="first-name" placeholder="Име" name="first_name" required />
+                    <!--<i class="fa fa-regular fa-circle-check"></i>-->
+                    <i class="hidden fa-solid fa-exclamation"></i>
                 </div>
                 <div class="input-box">
                     <label>Фамилия</label>
                     <input type="text" id="last-name" placeholder="Фамилия" name="last_name" required />
+                    <!--<i class="fa fa-regular fa-circle-check"></i>-->
+                    <i class="hidden fa-solid fa-exclamation"></i>
                 </div>
                 <div class="input-box ">
                     <label>Потребителско име</label>
                     <input type="text" id="username" placeholder="Потребителско име" name="username" required />
+                    <!--<i class="fa fa-regular fa-circle-check"></i>-->
+                    <i class="hidden fa-solid fa-exclamation"></i>
                 </div>
                 <div class="input-box ">
                     <label>Е-майл адрес</label>
                     <input type="text" id="email" placeholder="Е-майл адрес" name="email" required />
+                    <!--<i class="fa fa-regular fa-circle-check"></i>-->
+                    <i class="hidden fa-solid fa-exclamation"></i>
                 </div>
 
                 <div class="input-box ">
                     <label>Парола</label>
                     <input type="password" id="password" placeholder="Парола" name="password" required />
+                    <!--<i class="fa fa-regular fa-circle-check"></i>-->
+                    <i class="hidden fa-solid fa-exclamation"></i>
                 </div>
                 <input type="text" value='{{selected_role}}'  name="role" style='display:none;'/>
                 <input type="submit" value="{{selected_role_capitalize}} регистрация" id="submit-form-btn">

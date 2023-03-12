@@ -1,4 +1,13 @@
 {% extends 'base.html' %} {% block content %}
+<style>
+    .invalid {
+        border: 3px solid red !important;
+    }
+    
+    .valid {
+        border: 3px solid green !important;
+    }
+</style>
 <div class="form-container">
     <section class="container">
         <img src="/static/images/login.png">
@@ -6,16 +15,21 @@
             {% csrf_token %}
             <div class="input-box">
                 <label>Имейл адрес</label>
-                <input type="text" placeholder="E-мейл" name='email' required />
+                <input type="text" placeholder="E-мейл" name='email' id='email' required />
+                <!--<i class="fa fa-regular fa-circle-check"></i>-->
+                <i class="hidden fa-solid fa-exclamation"></i>
             </div>
 
             <div class="input-box">
                 <label>Парола</label>
-                <input type="password" placeholder="Парола" name='password' required />
+                <input type="password" placeholder="Парола" name='password' id='password' required />
+                <!--<i class="fa fa-regular fa-circle-check"></i>-->
+                <i class="hidden fa-solid fa-exclamation"></i>
             </div>
 
             <input type="submit" value="Влез в акаунта си" id="submit-form-btn">
         </form>
     </section>
 </div>
+<script type="text/javascript" src="/static/js/login.js"></script>
 {% endblock %}

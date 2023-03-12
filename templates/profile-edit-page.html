@@ -2,16 +2,16 @@
 {% block content %}
 	<div class="form-container">
 		<section class="container">
-			<h2>Създайте си профил</h2>
-			<form method="post" action="{% url 'create_cv' %}" enctype="multipart/form-data" class='form'>
+			<h2>Редактирай профил</h2>
+			<form method="post" action="/profile/profile-edit/{{user.username}}/" enctype="multipart/form-data" class='form'>
 				{% csrf_token %}
 				<div class="input-box">
 					<label>Специалност</label>
-					<input type="text" placeholder="Пример: Програмист на Python" name='title'/>
+					<input type="text" value="{{cv.title}}" name='title'/>
 				</div>
 				<div class="input-box">
 					<label>За вас</label>
-					<textarea id="description" name="about-me" rows="4" cols="1" class="textarea" placeholder="Дайте кратко описание за вашите способности. Пример: Имам богат опит в сферата на програмирането. Работя с езика Python и web-framework Django."></textarea>
+					<textarea id="description" name="about-me" rows="4" cols="1" class="textarea" placeholder="Дайте кратко описание за вашите способности. Пример: Имам богат опит в сферата на програмирането. Работя с езика Python и web-framework Django.">{{cv.about_me}}</textarea>
 				</div>
 				<div class="input-box">
 					<div class="skills">
@@ -20,7 +20,14 @@
 							<input id='skill-textbox' class="textbox" type="text" placeholder="Добави умения">
 							<input name='skills' value='' style='display:none;' id='skill-values' class="textbox" type="text">
 						</div>
+						
 						<button class="add" id='add-skill'>Добави</button>
+                        {% for skill in cv.skills %}
+                            <div class='skill'>
+                                <span class="skill-text">{{skill}}</span>
+                                <button class="delete" onclick="this.parentElement.remove()"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                        {% endfor %}
 					</div>
 				</div>
                 <div class="input-box">
@@ -30,17 +37,17 @@
                         <label for="upload-CV-input" class="custom-file-upload">
                             <i class="fas fa-cloud-upload-alt"></i> Избери файл
                         </label>
-                        <input type='file' name='CV-file' id='upload-CV-input' style='display:none'>
+                        <input type='file' name='CV-file' id='upload-CV-input' style='display:none' value='{{ cv.file.name }}'>
                     </div>
                 </div>
-					<input type="submit" value="Създайте профил" id="submit-form-btn">
+					<input type="submit" value="Редакирайте профила" id="submit-form-btn">
 				
 	</div>
 	</div>
 	<script>
 		const fileInput = document.getElementById('upload-CV-input');
 		const customUpload = document.querySelector('.custom-file-upload');
-		
+		customUpload.textContent = '{{ cv.file.name }}';
 		fileInput.addEventListener('change', function() {
 		  if (fileInput.files.length > 0) {
 			customUpload.textContent = fileInput.files[0].name;
@@ -49,6 +56,7 @@
 		  }
 		});
 		</script>
+	<script src='/static/js/edit-profile.js'></script>
 	<script src='/static/js/skills-autocomplete.js'></script>
 	<script src='/static/js/skills.js'></script>
 {% endblock %}

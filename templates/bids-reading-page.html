@@ -34,7 +34,7 @@
 {% endif %}
 <main class="applications-reading">
     {% for application in applications %}
-        <a href='/profile/{{application.candidate.id}}'>
+        <a href='/profile/{{application.candidate.username}}'>
             <div class="bid-details">
                 <div class="text-container">
                     <h3 class="application-name">{{application.candidate.first_name}} {{application.candidate.last_name}}</h3>

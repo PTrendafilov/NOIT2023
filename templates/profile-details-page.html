@@ -1,168 +1,41 @@
-{% extends 'base.html' %}
-{% block content %}
-	<div class="profile-container">
-        <aside>
-            <div class="profile">
-                <div class="img-box">
-                    <img src="/static/images/profile.png" alt="My Picture">
-                </div>
-                <div class="h2">
-                <h2>{{request.user.first_name}} {{request.user.last_name}}</h2>
-                <h2>Python Developer</h2>
-                </div>
-                    <button class="button">
-                        Edit Profile <i class="fa-regular fa-pen-to-square"></i>
-                    </button>
-                  <div id="container">
-             </div>
-                
+{% extends 'base.html' %} {% block content %}
+<style>
+    #download-btn{
+        font-size:20px;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="/static/css/job-details-2.css">
+<div class="form-container">
+    <section class="container">
+        <h2>{{user.first_name}} {{user.last_name}}</h2>
+        <div class="basic-info">
+            <div class="left-part">
+                <span class='info-spans' id='skills-info'>Умения: 
+                {%for skill in cv.skills%}
+                    <span style='color: #46e0ba;'>{{skill}}</span>
+                {%endfor%}</span><br>
             </div>
-            <div class="contacts">
-                <h3 class="title">Contact Info</h3>
-                <ul>
-                    <li>
-                        <a href="https://github.com/PTrendafilov" target="blank">
-                            <span class="icon"><i class="fa-brands fa-github"></i></span>
-                            <span class="text" style="border-bottom-style: solid;border-bottom-width:1px;">github</span>
-                        </a>
-                    </li>
-                    <li>
-                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                        <span class="text">.........@abv.bg</span>
-                    </li>
-                    <li>
-                        <span class="icon"><i class="fa-solid fa-phone"></i></span>
-                        <span class="text">08********</span>
-                    </li>
-                </ul>
-                <h2 class="title-about">Experience</h2>
-                <div class="box">
-                    <div class="description">
-                        <h4><a target="blank" href="https://github.com/PTrendafilov/Ecommerce">Aaaaaaaaa</a></h4>
-                        <p>The project is built on Django. The function of the website is to promote a small startup business and to facilitate online sales and purchases. The business is expected to begin operations in two months and the deadline for the
-                            site is a month after the opening. I expect to participate in future ICT competitions with this project.</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="description">
-                        <h4><a target="blank" href="https://github.com/PTrendafilov/DjangoExam">Bbbbbbbbbbb</a>
-                        </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus obcaecati eligendi mollitia, delectus illo deserunt est, hic, rerum molestiae ut dicta nihil voluptatum ipsa voluptatibus adipisci recusandae itaque incidunt
-                            earum?
-                        </p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="description">
-                        <h4><a target="blank" href="https://github.com/PTrendafilov/National-Olympyad-2022">Ccccccccccccc</a></h4>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est quaerat deleniti modi suscipit autem quis doloribus maxime consequuntur dolore repellendus odit molestias inventore, debitis, in amet placeat et ex assumenda.</p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="description">
-                        <h4><a target="blank" href="https://github.com/PTrendafilov/SoftUniada2021">Ddddddddddddddd</a></h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore nisi cum aliquam molestiae, tempora eos maxime consequatur, veritatis, alias maiores fugiat aliquid numquam? Odit quam, ut tempora reiciendis alias voluptates!</p>
-                    </div>
-                </div>
+            <div class="right-part">
+                Специалност:<span style='color: #46e0ba;'> {{cv.title}}</span>
             </div>
-        </aside>
-        <main>
-            <div class="about">
-                <h2 class="title-about">About</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo maxime dolorem debitis et at magnam doloribus, facere dicta dolor eveniet quidem dolore minima id nam inventore error dolores ipsa laborum!
-                </p>
-            </div>
-            <div class="about education">
-                <h2 class="title-about">Education</h2>
-                <div class="box">
-                    <div class="education">
-                        <h5>2021-Present</h5>
-                        <h5>SoftUni</h5>
-                    </div>
-                    <div class="description">
-                        <h4>Python Developer</h4>
-                        <ul id="courses">
-                            <li>
-
-                                Python Basics
-
-                            </li>
-                            <li>
-
-                                Information Security Management
-
-                            </li>
-                            <li>
-
-                                Programming Fundamentals with Python
-
-                            </li>
-                            <li>
-
-                                Open Source And Threat Intelligence
-
-                            </li>
-                            <li>
-
-                                Python Web Framework
-
-                            </li>
-                            <li>
-
-                                Python Web Basics
-
-                            </li>
-                            <li>
-                                System And Network Compromising
-
-                            </li>
-                            <li>
-                                HTML & CSS
-                            </li>
-                            <li>
-                                Angular
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="education">
-                        <h5>2020-Present</h5>
-                        <h5>NPMG</h5>
-                    </div>
-                    <div class="description">
-                        <h4>Computer Science Class</h4>
-                        <p>My group in school speciazes in software and hardware. I study HTML, CSS and JS at my ICT class and C++ at my Computer Science class. In addition, I have intensive mathematics education on a weekly basis.</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="about projects">
-            </div>
-            <div class="about lang">
-                <h2 class="title-about">Languages</h2>
-                <div class="box">
-                    <h4>English Proficient</h4>
-                    <div class="precent">
-                        <div style="width: 80%;"></div>
-                    </div>
-                </div>
-                <div class="box">
-                    <h4>Russian Intermediate</h4>
-                    <div class="precent">
-                        <div style="width: 50%;"></div>
-                    </div>
-                </div>
-                <div class="box">
-                    <h4>Bulgarian Native</h4>
-                    <div class="precent">
-                        <div style="width:100%;"></div>
-                    </div>
-                </div>
-            </div>
-
-
-        </main>
-    </div>
+        </div>
+        <div id='description'>
+            <span>Описание: </span>
+            <p>{{cv.about_me}}</p>
+            <a href="/profile/download-cv/{{user.username}}" id='download-btn' class='button'><i class="fa-solid fa-download"></i> Изтеглете CV-то</a>
+            <span>Предишни проекти: </span>
+            <ul id='responsibility-list'>
+                {%for responsibility in project.responsibilities%}
+                <li>{{responsibility}}</li>
+                {%endfor%}
+            </ul>
+        </div>
+        <div class="options">
+            {% if request.user == cv.user %}
+                <a href="/profile/profile-edit/{{user.username}}" id='edit-btn'><i class="fa-regular fa-pen-to-square"></i></a>
+                <a href="/profile/profile-delete/{{user.username}}" id='delete-btn'><i class="far fa-trash-alt"></i></a> 
+            {% endif %}
+        </div>
+    </section>
+</div>
 {% endblock %}

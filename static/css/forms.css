@@ -139,3 +139,20 @@
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.4);
 }
+.input-box i.fa-circle-check {
+  position: absolute;
+  margin-top: 50px;
+  right: 50px;
+  color: green;
+}
+
+.input-box i.fa-exclamation {
+  position: absolute;
+  margin-top: 50px;
+  right: 50px;
+  color: #fb0707;
+}
+
+.hidden {
+  display: none !important;
+}
