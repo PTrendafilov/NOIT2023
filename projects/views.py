@@ -1,9 +1,39 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from accounts.models import Profile as User
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from .get_time import *
 
+#########################################
+############   DECORATORS   #############
+#########################################
+def client_required(view_func):
+    def wrapper(request, *args, **kwargs):
+        if request.user.role != 'client':
+            return HttpResponseForbidden('You have no permissions')
+        return view_func(request,*args, **kwargs)
+    return wrapper
+
+def project_creator_required(view_func):
+    def wrapper(request, id,*args, **kwargs):
+        user = request.user
+        project = get_object_or_404(Project, id=id)
+        if project.creator != request.user:
+            return HttpResponseForbidden('You have no permissions')
+        return view_func(request, id,*args, **kwargs)
+    return wrapper
+
+def freelancer_required(view_func):
+    def wrapper(request,*args, **kwargs):
+        if request.user.role != 'freelancer':
+            return HttpResponseForbidden('You have no permissions')
+        return view_func(request,*args, **kwargs)
+    return wrapper
+
+
+#########################################
+##########   MAIN FUNCTIONS   ###########
+#########################################
 def index(request):
     jobs = Project.objects.all().order_by('-date_created')
     jobs_list = []
@@ -34,9 +64,11 @@ def jobs_created_by_user(request):
             undone_job_list.append(job)
     return render(request, 'profile-created-jobs.html', {'user_jobs':jobs_list, 'done_jobs':done_job_list, 'undone_jobs':undone_job_list,'paid_jobs':paid_done_jobs_list})
 
+@client_required
 def create_job_page(request):
     return render(request, 'create.html')
 
+@client_required
 def create_project(request):
     project = Project()
     project.name = request.POST['title']
@@ -71,23 +103,22 @@ def details_job(request, id):
             already_made_offer=True
     return render(request, 'job-details.html', {'project':project, 'flag':flag, 'is_freelancer':is_freelancer, 'already_made_offer': already_made_offer})
 
+@project_creator_required
 def project_delete(request, id):
     project = Project.objects.get(id=id)
-    if request.user != project.creator:
-        return HttpResponse('You are not authorized to access this page.')
     project.delete()
     return redirect(jobs_created_by_user)
 
+@project_creator_required
 def project_edit_page(request, id):
     project=Project.objects.get(id=id)
-    if request.user != project.creator:
-        return HttpResponse('You are not authorized to access this page.')
     project.skills = project.skills.split('(*)')
     project.responsibilities = project.responsibilities.split('(*)')
     return render(request, 'edit-project.html', {'project':project})
 
+@project_creator_required
 def edit_project(request, id):
-    project = Project()
+    project = Project.objects.get(id=id)
     project.name = request.POST['title']
     project.description = request.POST['description']
     project.skills = request.POST['skills']
@@ -103,6 +134,7 @@ def edit_project(request, id):
     project.save()
     return redirect(jobs_created_by_user)
 
+@freelancer_required
 def aplly_for_job(request, id):
     project=Project.objects.get(id=id)
     apllication=Application()
@@ -116,10 +148,9 @@ def aplly_for_job(request, id):
     project.save()
     return redirect(index)
 
+@project_creator_required
 def project_bids(request, id):
     project = Project.objects.get(id=id)
-    if request.user != project.creator:
-        return HttpResponse('You are not authorized to access this page.')
     applications = Application.objects.filter(project=project)
     applications_list = []
     flag = False
@@ -134,30 +165,27 @@ def project_bids(request, id):
             applications_list.append(application)
     return render(request, 'bids-reading-page.html', {'applications':applications_list, 'project':project, 'accepted_bid': accepted_bid, 'flag_accepted_bid': flag})
 
+@project_creator_required
 def accept_bid(request, id):
     application = Application.objects.get(id=id)
     project = application.project
-    if request.user != project.creator:
-        return HttpResponse('You are not authorized to access this page.')
     application.is_accepted = True
     project_id = project.id
     application.save()
     return redirect('project_bids', id=project_id)
 
+@project_creator_required
 def reject_bid(request, id):
     application = Application.objects.get(id=id)
-    if request.user != project.creator:
-        return HttpResponse('You are not authorized to access this page.') 
     project = application.project
     project_id = project.id
     application.is_rejected = True
     application.save()
     return redirect('project_bids', id=project_id)
 
+@project_creator_required
 def project_is_done(request, id):
     project = Project.objects.get(id=id)
-    if request.user != project.creator:
-        return HttpResponse('You are not authorized to access this page.')
     applications = Application.objects.filter(project=project)
     project.is_it_done = True
     for application in applications:
@@ -168,10 +196,9 @@ def project_is_done(request, id):
     project.save()
     return redirect(jobs_created_by_user)
 
+@project_creator_required
 def remove_accepted_bid(request, id):
     application = Application.objects.get(id=id)
-    if request.user != project.creator:
-        return HttpResponse('You are not authorized to access this page.')    
     project = application.project
     project_id = project.id
     application.is_rejected = True
@@ -179,6 +206,7 @@ def remove_accepted_bid(request, id):
     application.save()
     return redirect('project_bids', id=project_id)
 
+@freelancer_required
 def bids_made_by_user(request):
     applications = Application.objects.filter(candidate=request.user)
     rejected_bids = []
@@ -201,6 +229,7 @@ def bids_made_by_user(request):
             waiting_bids.append(application)
     return render(request, 'profile-created-bids.html', {'user_applications':applications, 'accepted_bids':accepted_bids, 'rejected_bids':rejected_bids, 'waiting_bids':waiting_bids, 'done_bids':done_bids, 'paid_bids':paid_bids})
 
+@freelancer_required
 def delete_bid(request, id):
     application = Application.objects.get(id=id)
     if request.user != application.candidate:
@@ -211,6 +240,7 @@ def delete_bid(request, id):
     application.delete()
     return redirect('bids_made_by_user')
 
+@freelancer_required
 def verify_payment(request, id):
     project = Project.objects.get(id=id)
     project.is_it_paid = True
