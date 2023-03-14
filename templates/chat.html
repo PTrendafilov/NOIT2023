@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/css/job-details-2.css">
+<div class="form-container">
+    <section class="container">
+        <h2>
+            Съобщения
+        </h2>
+        
+        <main class="jobs-reading">
+            {% for room in rooms %}
+                <a href='room/{{room.id}}'>
+                    <div class="job">
+                        <div class="text-container">
+                            <h3 class="project-name" style='color:#46e0ba;'>{{room.title}}</h3>
+                            <p class="project-description">{{room.last_message}}</p> 
+                            <p class="project-date">Преди {{room.last_message_time}}</p> 
+                        </div>    
+                    </div>
+                </a>
+            {% endfor %}
+        </main>
+    </section>
+</div>
+{% endblock %}

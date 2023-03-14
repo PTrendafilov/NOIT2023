@@ -3,7 +3,6 @@ from .models import *
 from accounts.models import Profile as User
 from django.http import HttpResponse, HttpResponseForbidden
 from .get_time import *
-
 #########################################
 ############   DECORATORS   #############
 #########################################

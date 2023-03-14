@@ -50,6 +50,7 @@
             <li><a href="/profile/create_page" id="profile-link">Профил</a></li>
             {%endif%}
             <li><a href="/accounts/logout">Излез</a></li>
+            <li><a href="/chat">Съобщения</a></li>
             {% if request.user.is_authenticated and request.user.role == 'client' %}
             <li><a href="/projects/jobs_created_by_user/" id="my-job-link">Моите проекти</a></li>
             {% endif %} {% if request.user.is_authenticated and request.user.role == 'freelancer' %}
